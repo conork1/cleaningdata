@@ -3,21 +3,21 @@
 ## Data assignment.
 
 currDir <- getwd() ## This assumes that the script unzipped folder "UCI HAR Dataset" is in the 
-##                    same folder as this current script
+##                    same folder as this current script and it is the working directory
 
 ## Input Files
-testFile <- paste0(currDir,"/cleaning/assignment/UCI HAR Dataset/test/X_test.txt")
-testLabelsFile <- paste0(currDir,"/cleaning/assignment/UCI HAR Dataset/test/y_test.txt")
-testSubjectsFile <- paste0(currDir,"/cleaning/assignment/UCI HAR Dataset/test/subject_test.txt")
-trainFile <- paste0(currDir,"/cleaning/assignment/UCI HAR Dataset/train/X_train.txt")
-trainLabelsFile <- paste0(currDir,"/cleaning/assignment/UCI HAR Dataset/train/y_train.txt")
-trainSubjectFile <- paste0(currDir,"/cleaning/assignment/UCI HAR Dataset/train/subject_train.txt")
-featureLabelsFile <- paste0(currDir,"/cleaning/assignment/UCI HAR Dataset/features.txt")
-activityLabelsFile <- paste0(currDir,"/cleaning/assignment/UCI HAR Dataset/activity_labels.txt")
+testFile <- paste0(currDir,"/UCI HAR Dataset/test/X_test.txt")
+testLabelsFile <- paste0(currDir,"/UCI HAR Dataset/test/y_test.txt")
+testSubjectsFile <- paste0(currDir,"/UCI HAR Dataset/test/subject_test.txt")
+trainFile <- paste0(currDir,"/UCI HAR Dataset/train/X_train.txt")
+trainLabelsFile <- paste0(currDir,"/UCI HAR Dataset/train/y_train.txt")
+trainSubjectFile <- paste0(currDir,"/UCI HAR Dataset/train/subject_train.txt")
+featureLabelsFile <- paste0(currDir,"/UCI HAR Dataset/features.txt")
+activityLabelsFile <- paste0(currDir,"/UCI HAR Dataset/activity_labels.txt")
 
 ## Output Files
-fullDataFile <- paste0(currDir,"/cleaning/assignment/UCI HAR Dataset/full_data.csv")
-summaryDataFile <- paste0(currDir,"/cleaning/assignment/UCI HAR Dataset/summary_data.csv")
+fullDataFile <- paste0(currDir,"/full_data.txt")
+summaryDataFile <- paste0(currDir,"/summary_data.txt")
 
 install.packages("readr")
 library(readr)
@@ -81,11 +81,11 @@ fulltraindata <- left_join(fulltraindata,activityLabelData, by="activitykey")
 ##Finally merge the test and train data frames
 fulldata <- bind_rows(fulltraindata,fulltestdata)
 
-## write the merged tidy data set to a csvt file called fulldata.csv
+## write the merged tidy data set to a comma separated file called full_data.txt
 write.table(fulldata,fullDataFile,sep=",",quote=FALSE, row.names = FALSE)
 
 
-## The last task is to get a summary of the data and also write that to a file
+## The last task is to get a summary of the data and also write that to a file summary_data.txt
 fulldata <- group_by(fulldata,activitydescription,subjectkey)
 summarydata <- summarise_each(fulldata, funs(mean))
 write.table(summarydata,summaryDataFile,sep=",",quote=FALSE, row.names = FALSE)
