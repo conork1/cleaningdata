@@ -1,15 +1,16 @@
 =======================================================================
 Study Design
 =======================================================================
-The raw data files for this analysis were extracted from the zip file getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip which was downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip and extracted into the work directory with the following structure:
+The raw data files for this analysis were extracted from the zip file getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip which was downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip and extracted into the working directory with the following structure:
 \UCI HAR Dataset\
 \UCI HAR Dataset\train\
 \UCI HAR Dataset\train\Inertial Signals\
 \UCI HAR Dataset\test\
 \UCI HAR Dataset\test\Inertial Signals\
-The R script run_analysis.R contains all the processing and transformation steps to take the raw data files to the final datasets. The script reads in 2 primary data sets containing test and training measurements which it eventually merges together after extracting a subset of mean and standard deviation (std) variables, combining them with other datasets containing information on the activity being performed and the subject that the measuremetns were captured from as well as an activity label dataset that provides the labels for the activity being performed.
 
-It is assumed that run_analysis.R will be reside in the top level directory and when executed generates 2 dataset output files in the folder "UCI HAR Dataset" : full_data.csv and summary_data.csv. full_data.csv contains all the full set measures from combing the test and train datasets. summary_data.csv the mean of all the measurements by subject and activity.
+Once those manual steps have been performed the R script run_analysis.R can be run. It contains all the processing and transformation steps to take the raw data files to the final datasets. The script reads in 2 primary data sets containing test and training measurements which it eventually merges together after extracting a subset of mean and standard deviation (std) variables, combining them with other datasets containing information on the activity being performed and the subject that the measuremetns were captured from as well as an activity label dataset that provides the labels for the activity being performed.
+
+It is assumed that run_analysis.R resides in the top level directory (the working directory) and when executed generates 2 dataset output files in the same directory : full_data.csv and summary_data.csv. full_data.csv contains all the full set measures from combing the test and train datasets. summary_data.csv the mean of all the measurements by subject and activity.
 
 The Code Book below describes the variables found in both outputted data sets. The 79 measurements are time domain signal measurements taken in 3 different dimensions X,Y & Z. Only the mean and standard deviation (std) measurements were extracted from the original datasets.
 
@@ -101,3 +102,4 @@ fBodyBodyGyroJerkMag-std()	11	numeric
 fBodyBodyGyroJerkMag-meanFreq()	11	numeric
 activitydescription	18	Factor
 	The description of the activity being performed when the measurement was taken. i.e. SITTING, WALKING, LAYING etc		
+		
